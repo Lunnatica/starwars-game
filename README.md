@@ -13,7 +13,7 @@ Launches the test runner in the interactive watch mode.<br />
 ### `yarn build`
 Builds the app for production to the `build` folder.<br />
 
-### Description of the app: Star Wars Top Trumps
+## Description of the app: Star Wars Top Trumps
 
 Using SWAPI: https://swapi.co/documentation
 
@@ -26,6 +26,6 @@ Once two cards are displayed the app should declare one of the cards a winner ba
 
 Having displayed the winning card, the user should be able to play again using an action button that repeats the same request.
 
-1 - Score counter. If there are two players, left and right, show how many times each side has won.
-2 - Option to select which resource to play against
+1 - Score counter. If there are two players, left and right, show how many times each side has won.<br />
+2 - Option to select which resource to play against<br />
 3 - Use Bootstrap-4 and display the details in a card https://getbootstrap.com/docs/4.1/components/card  and the winning attribute in badges https://getbootstrap.com/docs/4.1/components/badge
