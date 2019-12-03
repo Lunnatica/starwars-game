@@ -3,12 +3,45 @@ const initialState = {
     card2: {}
 }
 
+// export function setUpCard(cardNumber, idResource, url) {
+    
+//     return (dispatch, getState) => {
+//         fetch(`${url}${idResource}`)
+//             .then(res => res.json())
+//             .then(resource => {
+//                 dispatch({
+//                     type: "SET_UP_CARD",
+//                     payload: {cardNumber, resource}
+//                 })
+//             })
+//     }
+// }
+
 export function setUpCard(cardNumber, resource) {
-    return {
+    return({
         type: "SET_UP_CARD",
         payload: {cardNumber, resource}
-    }
+    })
 }
+
+
+
+
+// export function setUpCard(cardNumber, idResource, url) {
+//     return new Promise( (resolve, reject) => {
+//         fetch(`${url}${idResource}`)
+//         .then(res => res.json())
+//         .then(resource => {
+//                 dispatch({
+//                     type: "SET_UP_CARD",
+//                     payload: {cardNumber, resource}
+//                 })
+//                 return resource
+//             })
+//     }
+// }
+
+
 
 export default function cardsReducer(state = initialState, action) {
     switch(action.type) {

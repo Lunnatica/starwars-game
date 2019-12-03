@@ -4,8 +4,8 @@ import GameCard from "../GameCard/GameCard"
 function CardsArea() {
     return (
         <div className="CardsArea">
-            <GameCard title="P1 Card"/>
-            <GameCard title="P2 Card"/>
+            <GameCard id="P1"/>
+            <GameCard id="P2"/>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from "redux"
+import { createStore, applyMiddleware, combineReducers, compose } from "redux"
 import thunk from "redux-thunk"
 import cardsReducer, {setUpCard} from "./cards"
 import playersReducer, { chooseWinner, incrementScore } from "./players"
@@ -12,7 +12,9 @@ const rootReducer = combineReducers({
 })
 
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose // to be able to debug with devtools extension
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+    
 store.subscribe(() => console.log(store.getState()))
 export default store
 
