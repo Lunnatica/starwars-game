@@ -3,24 +3,20 @@ import Score from "../Score/Score"
 import { useSelector } from "react-redux"
 
 function GameResults() {
-    const players = useSelector(state => state.players)
-    const currentWinner = players.winner
-    const CurrentGameResults = () => {
-        const resultText = (currentWinner === "draw" ? 
+    const {winner, scoreP1, scoreP2} = useSelector(state => state.players)
+    
+    const ResultText = () => (winner === "draw" ? 
                     <p>Draw - no winner this time!</p> : 
-                    <p>The winner in this game was... {currentWinner}</p>)
-        return (
-            currentWinner ? 
-                <p id='currentGameResults'>
-                    {resultText}
-                </p> : null
-        )
-    }
+                    <p>The winner in this game was... {winner}</p>)
+
+    const CurrentGameResults = () => winner ? 
+                                    <div id='currentGameResults'><ResultText /></div> : 
+                                    null
     return (
         <div>
             <CurrentGameResults />
-            <Score id="P1" count={players.scoreP1}/>
-            <Score id="P2" count={players.scoreP2} />
+            <Score id="P1" count={scoreP1}/>
+            <Score id="P2" count={scoreP2} />
         </div>
     )
 }

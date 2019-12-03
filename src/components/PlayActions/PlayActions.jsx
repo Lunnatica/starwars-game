@@ -9,6 +9,8 @@ import { incrementScore, chooseWinner } from "../../redux/players"
 function PlayActions() {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
+    const [isDisabled, setIsDisabled] = useState(false);
+    const [count, setCount] = useState(0);
 
     let peopleButtonClassName = state.swapiLists.people ? "Button" : "Button-disabled"
     let starshipsButtonClassName = state.swapiLists.starships ? "Button" : "Button-disabled"
@@ -19,7 +21,7 @@ function PlayActions() {
             .then(resource => dispatch(setUpCard(cardNumber, resource))            )          
     }
 
-    async function setUpCardGame(cardNumber, currentUrl,currentCount) {
+    function setUpCardGame(cardNumber, currentUrl,currentCount) {
         const randomNumber = Math.floor(Math.random() * (currentCount - 1))
         return fetchAndSetUpCard(cardNumber,currentUrl,randomNumber)
     }
@@ -65,11 +67,16 @@ function PlayActions() {
         if(! currentCount) return // if no list yet, return 
         else {
             // get 2 cards from the list and update them in state to show them 
-            await setUpCardGame(1, currentUrl, currentCount) // return promise??
-            await setUpCardGame(2, currentUrl, currentCount)
-            battle(gameType)    
+            
+            setIsDisabled(true)
+            Promise.all([setUpCardGame(1, currentUrl, currentCount), setUpCardGame(2, currentUrl, currentCount)])
+            .then(() => {
+                battle(gameType)    
+                setIsDisabled(false)
+            });             
         }
     }
+
     return (
         <div className="PlayActions">
             <p id="gameDescription">Choose a resource to fight...</p>
@@ -77,12 +84,17 @@ function PlayActions() {
                 className ={peopleButtonClassName} 
                 callback={() =>  play("people") } 
                 text="Start battle! (People)"
+                isDisabled={isDisabled}
             />
             <Button id="playWithStarshipsButton" 
                 className={starshipsButtonClassName} 
                 callback={() => play("starships")} 
                 text="Start battle! (Starships)"
+                isDisabled={isDisabled}
             />
+            <button onClick={() => setCount(count + 1)}>
+                Click me {count}
+            </button>
         </div>
     )
 }

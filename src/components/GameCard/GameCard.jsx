@@ -11,7 +11,7 @@ function GameCard(props) {
                 <img className="card-img-top" src="http://animaticons.co/wp-content/uploads/2015/10/ps-image-size.jpg" alt="Card cap"/>
                 <div className="card-body">
                     <h5 className="card-title">{currentCard.name}</h5>
-                    {({} !== {}) ? 
+                    {(Object.keys(currentCard).length) ? 
                             <div className="card-text">
                                 <p>Height: {currentCard.height}</p>
                                 <p>Mass: {currentCard.mass}</p>
