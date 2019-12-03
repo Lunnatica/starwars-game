@@ -1,15 +1,15 @@
 const initialState = {
-    people: {},
-    starships: {}
+    people: 0,
+    starships: 0
 }
-export function setUpList(resource,data) {
+export function setUpListCount(resource,data) {
     return {
         type: "SET_UP_LIST",
         payload: {resource,data}
     }
 }
 
-export default function swapiListsReducer(state = initialState, action) {
+export default function swapiListsCountReducer(state = initialState, action) {
     switch(action.type) {
         case "SET_UP_LIST":
             if(action.payload.resource === "people") return {...state, people: action.payload.data}

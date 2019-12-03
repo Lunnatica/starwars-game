@@ -2,13 +2,13 @@ import { createStore, applyMiddleware, combineReducers } from "redux"
 import thunk from "redux-thunk"
 import cardsReducer, {setUpCard} from "./cards"
 import playersReducer, { chooseWinner, incrementScore } from "./players"
-import swapiListsReducer, { setUpPeopleList, setUpStarshipsList } from "./swapiLists"
+import swapiListsCountReducer, { setUpListCount } from "./swapiListsCount"
 
 
 const rootReducer = combineReducers({
     cards: cardsReducer,
     players: playersReducer,
-    swapiLists: swapiListsReducer
+    swapiLists: swapiListsCountReducer
 })
 
 

@@ -4,22 +4,22 @@ import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import PlayArea from "./components/PlayArea/PlayArea"
 import { useDispatch } from "react-redux"
-import { setUpList } from './redux/swapiLists';
+import { setUpListCount } from './redux/swapiListsCount';
+import { peopleURL, starshipsURL } from "./constants"
 
-const peopleURL = "https://swapi.co/api/people/" 
-const starshipsURL = "https://swapi.co/api/starships/" 
 
 function App() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => { // retrieve list of people and list of starships
+
+  useEffect(() => { // setup count of both lists to be able to fetch ids directly
     function fetchData(url) {
       fetch(url)
       .then(res => res.json())
       .then(res => {
-        if (url === peopleURL) dispatch(setUpList("people", res))
-        else dispatch(setUpList("starship", res))
+        if (url === peopleURL) dispatch(setUpListCount("people", res.count))
+        else dispatch(setUpListCount("starships", res.count))
       })
     }
     fetchData(peopleURL)

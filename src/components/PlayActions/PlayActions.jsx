@@ -1,37 +1,40 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import Button from "../Button/Button"
+import { peopleURL, starshipsURL } from "../../constants"
+
 
 function PlayActions() {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
 
-    let peopleButtonClassName = state.swapiLists.people !== {} ? "Button" : "Button-disabled"
-    let starshipsButtonClassName = state.swapiLists.starships !== {} ? "Button" : "Button-disabled"
+    let peopleButtonClassName = state.swapiLists.people ? "Button" : "Button-disabled"
+    let starshipsButtonClassName = state.swapiLists.starships ? "Button" : "Button-disabled"
 
-    function getRandomResource(list) {
-        const randomNumber = Math.floor(Math.random() * (list.count - 1))
+    function getRandomResource(gameType,currentCount) {
+        const randomNumber = Math.floor(Math.random() * (currentCount - 1))
         console.log(randomNumber)
-        return list.results[randomNumber]
+        return "hola"
     }
 
     function play(gameType) {
         // get relevant list of resources to play
-        let currentList = []
-        if(gameType === "people") currentList = state.swapiLists.people  
-        else currentList = state.swapiLists.starships
+        let currentCount = 0
+        if(gameType === "people") currentCount = state.swapiLists.people  
+        else currentCount = state.swapiLists.starships
 
-        if(currentList === {}) return // if no list yet, return 
+        if(! currentCount) return // if no list yet, return 
+        else {
+            // get 2 cards from the list and update them in state to show them 
 
-        // get 2 cards from the list and update them in state to show them 
-
-        const card1 = getRandomResource(currentList)
-        const card2 = getRandomResource(currentList)
-
-        console.log(card1,card2)
-        // update cards
-        // compare resources
-        // select winner (update on state) and show winner on card and update counter
+            const card1 = getRandomResource(gameType, currentCount)
+            const card2 = getRandomResource(gameType, currentCount)
+    
+            console.log(card1,card2)
+            // update cards
+            // compare resources
+            // select winner (update on state) and show winner on card and update counter
+        }
     }
     return (
         <div className="PlayActions">
