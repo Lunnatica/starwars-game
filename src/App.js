@@ -3,25 +3,28 @@ import './style/App.css';
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import PlayArea from "./components/PlayArea/PlayArea"
-import {useSelector, useDispatch} from "react-redux"
-import {increment, decrement} from "./redux"
+import { useDispatch } from "react-redux"
+import { setUpList } from './redux/swapiLists';
 
-
+const peopleURL = "https://swapi.co/api/people/" 
+const starshipsURL = "https://swapi.co/api/starships/" 
 
 function App() {
-  useEffect(() => {
-    function fetchData() {
-      fetch("https://swapi.co/api/planets/4/")
-      .then(res => res.json())
-      .then(res => console.log(res))
-    }
-    fetchData()
-  }, [])
-    
-      // .then(res => this.setState({ planets: res }))
-      // .catch(() => this.setState({ hasErrors: true }))
-  
 
+  const dispatch = useDispatch()
+
+  useEffect(() => { // retrieve list of people and list of starships
+    function fetchData(url) {
+      fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        if (url === peopleURL) dispatch(setUpList("people", res))
+        else dispatch(setUpList("starship", res))
+      })
+    }
+    fetchData(peopleURL)
+    fetchData(starshipsURL)
+  }, [])
   return (
     <div className="App">
       <Header />
@@ -29,15 +32,6 @@ function App() {
       <Footer />
     </div>
   );
-  // const count = useSelector(state => state)
-  //   const dispatch = useDispatch()
-  //   return (
-  //       <div>
-  //           <h1>{count}</h1>
-  //           <button onClick={() => dispatch(decrement())}>-</button>
-  //           <button onClick={() => dispatch(increment())}>+</button>
-  //       </div>
-  //   )
 }
 
 export default App;

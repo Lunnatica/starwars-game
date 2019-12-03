@@ -1,28 +1,21 @@
 const initialState = {
     people: {},
-    startships: {}
+    starships: {}
 }
-export function setUpPeopleList(data) {
+export function setUpList(resource,data) {
     return {
-        type: "SET_UP_PEOPLE_LIST",
-        payload: data
-    }
-}
-
-export function setUpStarshipsList(data) {
-    return {
-        type: "SET_UP_STARSHIPS_LIST",
-        payload: data
+        type: "SET_UP_LIST",
+        payload: {resource,data}
     }
 }
 
 export default function swapiListsReducer(state = initialState, action) {
     switch(action.type) {
-        case "CHOOSE_WINNER":
-            return {...state,winner:action.payload}
-        case "INCREMENT_SCORE":
-            if(action.payload === "P1") return {...state,scoreP1: state.scoreP1 + 1}
-            else return {...state,scoreP2: state.scoreP2 + 1}
+        case "SET_UP_LIST":
+            if(action.payload.resource === "people") return {...state, people: action.payload.data}
+            else return {...state, starships: action.payload.data}
+        case "SET_UP_STARSHIPS_LIST":
+            return {...state, starships: action.payload}
         default:
             return state
     }
