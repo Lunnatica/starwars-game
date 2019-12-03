@@ -1,39 +1,25 @@
-import {createStore, applyMiddleware} from "redux"
+import {createStore, applyMiddleware, combineReducers} from "redux"
 import thunk from "redux-thunk"
+import cardsReducer, {getPerson, getSpaceship} from "./cards"
+import playersReducer, { chooseWinner, incrementScore } from "./players"
+import swapiListsReducer from "./swapiLists"
 
-export function getPerson() {
-    return (dispatch, getState) => {
-        const number = getState()
-        const baseUrl = "https://swapi.co/api/people"
-        fetch(`${baseUrl}/${number}`)
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-                dispatch({
-                    type: "INCREMENT",
-                    payload: res
-                })
-            })
-    }
-}
 
-export function decrement() {
-    return {
-        type: "DECREMENT"
-    }
-}
+const rootReducer = combineReducers({
+    cards: cardsReducer,
+    players: playersReducer,
+    swapiLists: swapiListsReducer
+})
 
-function reducer(count = 0, action) {
-    switch(action.type) {
-        case "INCREMENT":
-            return count + 1
-        case "DECREMENT":
-            return count - 1
-        default:
-            return count
-    }
-}
 
-const store = createStore(reducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 store.subscribe(() => console.log(store.getState()))
 export default store
+
+
+//store.dispatch(chooseWinner("P1"))
+// store.dispatch(incrementScore("P1"))
+// store.dispatch(incrementScore("P1"))
+// store.dispatch(incrementScore("P2"))
+store.dispatch(getPerson("P1"))
+store.dispatch(getPerson("P2"))

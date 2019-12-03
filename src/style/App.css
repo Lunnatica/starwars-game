@@ -25,7 +25,7 @@ code {
   height: 40vmin;
 }
 
-.App-header {
+.App-header, .Footer {
   background-color: #282c34;
   display: -webkit-box;
   display: -ms-flexbox;

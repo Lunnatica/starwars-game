@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style/App.css';
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
@@ -7,7 +7,21 @@ import {useSelector, useDispatch} from "react-redux"
 import {increment, decrement} from "./redux"
 
 
+
 function App() {
+  useEffect(() => {
+    function fetchData() {
+      fetch("https://swapi.co/api/planets/4/")
+      .then(res => res.json())
+      .then(res => console.log(res))
+    }
+    fetchData()
+  }, [])
+    
+      // .then(res => this.setState({ planets: res }))
+      // .catch(() => this.setState({ hasErrors: true }))
+  
+
   return (
     <div className="App">
       <Header />

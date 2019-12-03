@@ -1,7 +1,7 @@
 import React from "react"
 import PlayActions from "../PlayActions/PlayActions"
 import GameResults from "../GameResults/GameResults"
-import GameCards from "../GameCards/GameCards"
+import CardsArea from "../CardsArea/CardsArea"
 
 
 function PlayArea() {
@@ -9,7 +9,7 @@ function PlayArea() {
         <div className="PlayArea">
             <PlayActions />
             <GameResults />
-            <GameCards />
+            <CardsArea />
         </div>
     )
 }
