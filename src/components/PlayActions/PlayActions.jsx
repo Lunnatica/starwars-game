@@ -1,42 +1,43 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import Button from "../Button/Button"
 import { peopleURL, starshipsURL } from "../../constants"
 import { setUpCard } from "../../redux/cards"
 import { incrementScore, chooseWinner } from "../../redux/players"
+import { setUpList } from '../../redux/swapiLists'
 
 
 function PlayActions() {
-    const state = useSelector(state => state)
+
     const dispatch = useDispatch()
-    const [isDisabled, setIsDisabled] = useState(false);
-    const [count, setCount] = useState(0);
+    const {people, starships} = useSelector(state => state.swapiLists)
+    const {card1, card2} = useSelector(state => state.cards)
+    const [isDisabled, setIsDisabled] = useState(true);
 
-    let peopleButtonClassName = state.swapiLists.people ? "Button" : "Button-disabled"
-    let starshipsButtonClassName = state.swapiLists.starships ? "Button" : "Button-disabled"
+    useEffect(() => { // retrieve list of people and list of starships
+      function fetchData(url, resourceType) {
+        return fetch(url)
+        .then(res => res.json())
+        .then(res => {
+          dispatch(setUpList(resourceType, res.results))
+          if(res.next) return fetchData(res.next, resourceType) 
+        })
+      }
+      // prevent the user from playing before all the data is loaded
+        Promise.all([fetchData(peopleURL, "people"), fetchData(starshipsURL, "starships")])
+        .then(() =>  setIsDisabled(false))
+    }, [])
 
-    function fetchAndSetUpCard(cardNumber,url,idResource) {
-        return fetch(`${url}${idResource}`)
-            .then(res => res.json())
-            .then(resource => dispatch(setUpCard(cardNumber, resource))            )          
-    }
-
-    function setUpCardGame(cardNumber, currentUrl,currentCount) {
-        const randomNumber = Math.floor(Math.random() * (currentCount - 1))
-        return fetchAndSetUpCard(cardNumber,currentUrl,randomNumber)
-    }
-
-    function battle(gameType) {
-        // select winner (update on state) and show winner on card and update counter
-        let attr1 = ""
-        let attr2 = ""
-
-        if(gameType === "people") {
-            attr1 = state.cards.card1.mass
-            attr2 = state.cards.card2.mass
+    function battle() {
+        // select winner (update on state), show winner on card and update counter
+        let attr1, attr2
+        console.log(card1)
+        if(Object.keys(card1).includes("mass")) {
+            attr1 = card1.mass
+            attr2 = card2.mass
         } else {
-            attr1 = state.cards.card1.crew
-            attr2 = state.cards.card2.crew
+            attr1 = card1.crew
+            attr2 = card2.crew
         }
         if(attr1==="unknown" || attr2==="unknown" || attr1 === attr2) {
             dispatch(chooseWinner("draw"))
@@ -51,50 +52,38 @@ function PlayActions() {
         }
     }
 
-    async function play(gameType) {
-        // get relevant list of resources to play
-        let currentCount = 0
-        let currentUrl = ""
-        // set up variables depending on game
-        if(gameType === "people") {
-            currentCount = state.swapiLists.people  
-            currentUrl = peopleURL
-        }  
-        else {
-            currentCount = state.swapiLists.starships
-            currentUrl = starshipsURL
-        }
-        if(! currentCount) return // if no list yet, return 
-        else {
-            // get 2 cards from the list and update them in state to show them 
-            
-            setIsDisabled(true)
-            Promise.all([setUpCardGame(1, currentUrl, currentCount), setUpCardGame(2, currentUrl, currentCount)])
-            .then(() => {
-                battle(gameType)    
-                setIsDisabled(false)
-            });             
-        }
+    function play(list) {
+            // get 2 cards from the list  
+            const randomNumber1 = Math.floor(Math.random() * (list.length - 1))
+            const randomNumber2 = Math.floor(Math.random() * (list.length - 1))
+
+            // update 2 cards in state
+            dispatch(setUpCard(1, list[randomNumber1]))
+            dispatch(setUpCard(2, list[randomNumber2]))
+
+            // decide who is the winner
+            battle()    
+        
     }
+    const GameDescription = () => isDisabled ? 
+                                <div className="gameDescription">Loading data...</div> :
+                                <div className="gameDescription"> Choose a resource to fight...</div>
 
     return (
         <div className="PlayActions">
-            <p id="gameDescription">Choose a resource to fight...</p>
+           <GameDescription />
             <Button id="playWithPeopleButton" 
-                className ={peopleButtonClassName} 
-                callback={() =>  play("people") } 
+                className ="playButton" 
+                callback={() =>  play(people) } 
                 text="Start battle! (People)"
                 isDisabled={isDisabled}
             />
             <Button id="playWithStarshipsButton" 
-                className={starshipsButtonClassName} 
-                callback={() => play("starships")} 
+                className="playButton" 
+                callback={() => play(starships)} 
                 text="Start battle! (Starships)"
                 isDisabled={isDisabled}
             />
-            <button onClick={() => setCount(count + 1)}>
-                Click me {count}
-            </button>
         </div>
     )
 }
