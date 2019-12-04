@@ -1,0 +1,45 @@
+$first-button-color: #4d00ff;
+$first-button-color-hover: #26017e;
+
+$second-button-color:orange;
+$second-button-color-hover: #ad7306;
+
+
+@mixin button($color, $hoverColor){
+    border: solid;
+    border-width: 1px;
+    color: white;
+    padding: 1em 2em;;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 1em;
+    margin: 0.4em 0.2em;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: $color;
+    &:hover{
+      background-color: $hoverColor
+    }
+  }
+
+@mixin disabledButton() {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: wait;
+}
+
+
+  #playWithPeopleButton {
+    @include button($first-button-color,$first-button-color-hover);
+    &:disabled {
+        @include disabledButton()
+    }
+  }
+
+  #playWithStarshipsButton {
+    @include button($second-button-color,$second-button-color-hover);
+    &:disabled {
+        @include disabledButton()
+    }
+  }

@@ -3,7 +3,9 @@ import React from "react"
 function Header() {
     return (
         <header className="App-header">
-            Star wars API
+            <span role="img" aria-label="Star emoji">✨ </span>
+             Star Wars Game 
+             <span role="img" aria-label="Rocket emoji"> 🚀</span>
         </header>
     )
 }

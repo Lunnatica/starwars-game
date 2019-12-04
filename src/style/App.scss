@@ -1,30 +1,47 @@
 @import 'index';
+@import '../components/Button/Button';
+@import '../components/PlayActions/PlayActions';
+@import '../components/PlayArea/PlayArea';
+@import '../components/GameResults/GameResults';
+@import '../components/CardsArea/CardsArea';
+
+
+$background-color:#272b30;
+
+$secondary-background-color: black;
+
+$starwarsFont:helvetica neue,Helvetica,Arial,sans-serif;
+
 
 .App {
     text-align: center;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-  }
+    background-color: $background-color;
+    font-family:$starwarsFont;
+}
   
-  .App-logo {
-    height: 40vmin;
-  }
-  
-  .App-header, .Footer {
-    background-color: #282c34;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .App-link {
-    color: #09d3ac;
-  }
-  
+.App-logo {
+  height: 40vmin;
+}
 
-  
+.App-header, .Footer {
+  background-color:$secondary-background-color;
+  color: white;
+}
+
+.App-header {
+  font-size: 2.5em;
+  padding: 0.5em;
+}
+
+.Footer {
+  padding: 1em;
+}
+
+
+
+
+
 

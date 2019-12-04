@@ -13,10 +13,14 @@ export function chooseWinner(player) {
 export default function cardsReducer(state = initialStatePlayers, action) {
     switch(action.type) {
         case "CHOOSE_WINNER":
-            return {
+            if(action.payload === "draw") return { // if draw, do not change scores
+                ...state,
+                winner:action.payload,
+            }
+            else return {
                 ...state,
                 winner:action.payload, // set up winner
-                ["score" + action.payload]: state[action.payload] + 1 // increment counter of winner plus 1
+                ["score" + action.payload]: state["score" + action.payload] + 1 // increment counter of winner plus 1
             }
         default:
             return state

@@ -9,6 +9,118 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+#playWithPeopleButton {
+  border: solid;
+  border-width: 1px;
+  color: white;
+  padding: 1em 2em;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 1em;
+  margin: 0.4em 0.2em;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #4d00ff;
+}
+
+#playWithPeopleButton:hover {
+  background-color: #26017e;
+}
+
+#playWithPeopleButton:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: wait;
+}
+
+#playWithStarshipsButton {
+  border: solid;
+  border-width: 1px;
+  color: white;
+  padding: 1em 2em;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 1em;
+  margin: 0.4em 0.2em;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: orange;
+}
+
+#playWithStarshipsButton:hover {
+  background-color: #ad7306;
+}
+
+#playWithStarshipsButton:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: wait;
+}
+
+.GameDescription {
+  color: white;
+  font-size: xx-large;
+  padding: 0.4em;
+}
+
+.ButtonsArea {
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.PlayArea {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+}
+
+.GameResults {
+  color: white;
+  font-size: 1.5em;
+}
+
+#CurrentGameResults {
+  padding: 0.4em;
+}
+
+.scoresContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0.4em;
+}
+
+.Score {
+  border: 3px solid white;
+  border-style: solid;
+  padding: 0.4em;
+  font-size: 0.8em;
+}
+
+.CardsArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 1em;
+}
+
 .App {
   text-align: center;
   display: -webkit-box;
@@ -19,6 +131,8 @@ code {
       -ms-flex-direction: column;
           flex-direction: column;
   min-height: 100vh;
+  background-color: #272b30;
+  font-family: helvetica neue, Helvetica, Arial, sans-serif;
 }
 
 .App-logo {
@@ -26,25 +140,16 @@ code {
 }
 
 .App-header, .Footer {
-  background-color: #282c34;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: black;
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.App-header {
+  font-size: 2.5em;
+  padding: 0.5em;
+}
+
+.Footer {
+  padding: 1em;
 }
 /*# sourceMappingURL=App.css.map */
