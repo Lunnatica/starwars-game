@@ -14,21 +14,24 @@ function PlayActions() {
     const {card1, card2} = useSelector(state => state.cards)
     const [isDisabled, setIsDisabled] = useState(true);
 
+
     useEffect(() => { // retrieve list of people and list of starships
-        let provisionalList = [] // to avoid re-rendering multiple times
-      function fetchData(url, resourceType) {
-        return fetch(url)
-        .then(res => res.json())
-        .then(res => {
-            provisionalList = provisionalList.concat(res.results)
+        function fetchData(url, resourceType) {
+          return fetch(url)
+          .then(res => res.json())
+          .then(res => {
+            dispatch(setUpList(resourceType, res.results))
             if(res.next) return fetchData(res.next, resourceType) 
-            else dispatch(setUpList(resourceType, res.results)) // once all data is loaded, update state
-        })
-      }
-      // prevent the user from playing before all the data is loaded
-        Promise.all([fetchData(peopleURL, "people"), fetchData(starshipsURL, "starships")])
-        .then(() => setIsDisabled(false))
-    }, [])
+          })
+        }
+    
+          // prevent the user from playing before all the data is loaded
+          Promise.all([fetchData(peopleURL, "people"), fetchData(starshipsURL, "starships")])
+          .then(() => setIsDisabled(false))
+      }, [])
+    
+    
+    
 
     function battle() {
         console.log("BATTLE with ", card1.name,card2.name)
