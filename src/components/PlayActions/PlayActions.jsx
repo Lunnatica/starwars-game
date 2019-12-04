@@ -13,23 +13,6 @@ function PlayActions() {
     const {people, starships} = useSelector(state => state.swapiLists)
     const {card1, card2} = useSelector(state => state.cards)
     const [isDisabled, setIsDisabled] = useState(true);
-
-
-    // useEffect(() => { // retrieve list of people and list of starships
-    //     function fetchData(url, resourceType) {
-    //       return fetch(url)
-    //       .then(res => res.json())
-    //       .then(res => {
-    //         dispatch(setUpList(resourceType, res.results))
-    //         if(res.next) return fetchData(res.next, resourceType) 
-    //       })
-    //     }
-    
-    //       // prevent the user from playing before all the data is loaded
-    //       Promise.all([fetchData(peopleURL, "people"), fetchData(starshipsURL, "starships")])
-    //       .then(() => setIsDisabled(false))
-    //   }, [])
-    
     
     useEffect(() => { // retrieve list of people and list of starships
         function fetchData(url, resourceType) {
@@ -45,7 +28,6 @@ function PlayActions() {
           Promise.all([fetchData(peopleURL, "people"), fetchData(starshipsURL, "starships")])
           .then(() => setIsDisabled(false))
       }, [])
-    
     
 
     function battle() { // decides winner depending on cards values
