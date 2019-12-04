@@ -3,6 +3,8 @@ const initialStatePlayers = {
     scoreP1: 0,
     scoreP2: 0
 }
+
+// action creator
 export function chooseWinner(player) {
     return {
         type: "CHOOSE_WINNER",
@@ -10,7 +12,8 @@ export function chooseWinner(player) {
     }
 }
 
-export default function cardsReducer(state = initialStatePlayers, action) {
+// reducer
+export default function playersReducer(state = initialStatePlayers, action) {
     switch(action.type) {
         case "CHOOSE_WINNER":
             if(action.payload === "draw") return { // if draw, do not change scores
@@ -20,7 +23,7 @@ export default function cardsReducer(state = initialStatePlayers, action) {
             else return {
                 ...state,
                 winner:action.payload, // set up winner
-                ["score" + action.payload]: state["score" + action.payload] + 1 // increment counter of winner plus 1
+                ["score" + action.payload]: state["score" + action.payload] + 1 // increment counter of winner 
             }
         default:
             return state

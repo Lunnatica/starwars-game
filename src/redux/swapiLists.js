@@ -2,7 +2,9 @@ const initialState = {
     people: [],
     starships: []
 }
-export function setUpList(resourceType,data,) {
+
+// action creator
+export function setUpList(resourceType,data) {
     return {
         type: "SET_UP_LIST",
         resourceType: resourceType,
@@ -10,6 +12,7 @@ export function setUpList(resourceType,data,) {
     }
 }
 
+// reducer
 export default function swapiListsReducer(state = initialState, action) {
     switch(action.type) {
         case "SET_UP_LIST":

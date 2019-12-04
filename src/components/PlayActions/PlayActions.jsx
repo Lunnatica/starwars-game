@@ -5,7 +5,7 @@ import { peopleURL, starshipsURL } from "../../constants"
 import { setUpCards } from "../../redux/cards"
 import { chooseWinner } from "../../redux/players"
 import { setUpList } from '../../redux/swapiLists'
-import { battle } from '../../gameLogic/gameLogic'
+import { battle } from '../../logic/gameLogic'
 
 
 function PlayActions() {
@@ -23,7 +23,6 @@ function PlayActions() {
             if(res.next) return fetchData(res.next, resourceType) 
           })
         }
-    
           // prevent the user from playing before all the data is loaded
           Promise.all([fetchData(peopleURL, "people"), fetchData(starshipsURL, "starships")])
           .then(() => setIsDisabled(false))
@@ -33,11 +32,9 @@ function PlayActions() {
        function play(list) {
         // get cards and decide winner
         const {card1, card2, winner} = battle(list)
-
         // update state 
         dispatch(setUpCards(card1, card2))
         dispatch(chooseWinner(winner))
-    
     }
     
     const GameDescription = () => isDisabled ? 
