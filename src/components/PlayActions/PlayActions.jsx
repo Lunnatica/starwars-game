@@ -6,6 +6,8 @@ import { setUpCards } from "../../redux/cards"
 import { chooseWinner } from "../../redux/players"
 import { setUpList } from '../../redux/swapiLists'
 import { battle } from '../../logic/gameLogic'
+import { ReactComponent as LoadingGif } from '../../assets/LoadingGif.svg';
+
 
 
 function PlayActions() {
@@ -15,12 +17,13 @@ function PlayActions() {
     const [isDisabled, setIsDisabled] = useState(true);
     
     useEffect(() => { // retrieve list of people and list of starships
-        function fetchData(url, resourceType) {
+        function fetchData(url, resourceType, listOfData = []) {
           return fetch(url)
           .then(res => res.json())
           .then(res => {
-            dispatch(setUpList(resourceType, res.results))
-            if(res.next) return fetchData(res.next, resourceType) 
+            listOfData.push(...res.results)
+            if(res.next) return fetchData(res.next, resourceType, listOfData)   
+            else dispatch(setUpList(resourceType, listOfData))
           })
         }
           // prevent the user from playing before all the data is loaded
@@ -38,7 +41,7 @@ function PlayActions() {
     }
     
     const GameDescription = () => isDisabled ? 
-                                <div className="GameDescription">Loading data...</div> :
+                                <div className="GameDescription"><p>Loading data...</p><LoadingGif/></div> :
                                 <div className="GameDescription"> Choose a resource to fight...</div>
 
     return (
