@@ -6,9 +6,7 @@ import { setUpCards } from "../../redux/cards"
 import { chooseWinner } from "../../redux/players"
 import { setUpList } from '../../redux/swapiLists'
 import { battle } from '../../logic/gameLogic'
-import { ReactComponent as LoadingGif } from '../../assets/LoadingGif.svg';
-
-
+import { ReactComponent as LoadingGif } from '../../assets/LoadingGif.svg'
 
 function PlayActions() {
 
@@ -16,22 +14,24 @@ function PlayActions() {
     const {people, starships} = useSelector(state => state.swapiLists)
     const [isDisabled, setIsDisabled] = useState(true);
     
-    useEffect(() => { // retrieve list of people and list of starships
+    useEffect(() => { 
+        // retrieve list of people and list of starships on first mount
         function fetchData(url, resourceType, listOfData = []) {
           return fetch(url)
           .then(res => res.json())
           .then(res => {
-            listOfData.push(...res.results)
-            if(res.next) return fetchData(res.next, resourceType, listOfData)   
-            else dispatch(setUpList(resourceType, listOfData))
+            listOfData.push(...res.results) 
+            if(res.next) return fetchData(res.next, resourceType, listOfData)   // gets data from next page
+            else dispatch(setUpList(resourceType, listOfData)) // updates state once we have all data
           })
+          .catch((error) => console.log(error))
         }
           // prevent the user from playing before all the data is loaded
           Promise.all([fetchData(peopleURL, "people"), fetchData(starshipsURL, "starships")])
           .then(() => setIsDisabled(false))
+          .catch((error) => console.log(error))
       }, [])
     
-
        function play(list) {
         // get cards and decide winner
         const {card1, card2, winner} = battle(list)
