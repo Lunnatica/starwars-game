@@ -50,24 +50,28 @@ describe('<GameCard />', () => {
         <GameCard id="P1"/>
     </Provider>
     )
-    expect(wrapper.find('LoadingCard').length).toBe(1)
+    expect(wrapper.find(".card-title").length).toBe(1)
   })
 
-  // it('should render <BattleAttribute/> mass for person', () => {
-  //   const store = mockStore(state)
-  //   const wrapper = shallow(
-  //   <Provider store={store}>
-  //       <GameCard id="P1"/>
-  //   </Provider>
-  //   )
-  // })
-
-  // it('should render <BattleAttribute/> crew for spaceship', () => {
-  //   const store = mockStore(state)
-  //   const wrapper = shallow(
-  //   <Provider store={store}>
-  //       <GameCard id="P1"/>
-  //   </Provider>
-  //   )
-  // })
+  it('should render <BattleAttribute/> mass for person', () => {
+    const state = stateTest.winnerP1
+    const store = mockStore(state)
+    const wrapper = mount(
+    <Provider store={store}>
+        <GameCard id="P1"/>
+    </Provider>
+    )
+    expect(wrapper.find(".card-text").text()).toContain("Mass")
+  })
+ 
+  it('should render <BattleAttribute/> crew for starship', () => {
+    const state = stateTest.starship
+    const store = mockStore(state)
+    const wrapper = mount(
+    <Provider store={store}>
+        <GameCard id="P1"/>
+    </Provider>
+    )
+    expect(wrapper.find(".card-text").text()).toContain("Crew")
+  })
 })

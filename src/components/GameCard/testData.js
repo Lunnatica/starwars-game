@@ -14,7 +14,6 @@ export const stateTest = {
           }
         }
     },
-
     "winnerP2": {
       "players": {
         "winner": "P2"
@@ -53,6 +52,19 @@ export const stateTest = {
       "card1": {},
       "card2": {}
     }
+  },"starship": {
+    "players": {
+      "winner": "P2"
+    },
+    "cards": {
+      "card1": {
+        "name": "Card1",
+        "crew": 10
+      },
+      "card2": {
+        "name": "Card2",
+        "crew": 20
+      }
+    }
   }
-
 }
