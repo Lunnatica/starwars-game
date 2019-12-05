@@ -8,11 +8,12 @@ describe('Game logic functionality test', () => {
     .mockImplementationOnce(() => 1)
     .mockImplementationOnce(() => 2);
     global.Math = mockMath;
+    cardList = 
     describe('battle()', () => {
         it('should return object with draw in the round', () => {
             const mockMath = Object.create(global.Math)
             mockMath.random = 0.5
-            
+            battle()
         })
         // it('should return object with P1 winning the round', () => {
         //     const mockMath = Object.create(global.Math)

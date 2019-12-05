@@ -12,7 +12,8 @@ function PlayActions() {
 
     const dispatch = useDispatch()
     const {people, starships} = useSelector(state => state.swapiLists)
-    const [isDisabled, setIsDisabled] = useState(true);
+    const [isDisabled, setIsDisabled] = useState(true) // controls buttons enablement
+    const [errorInFetch, setErrorInFetch] = useState(false) // depends on fetch responses
     
     useEffect(() => { 
         // retrieve list of people and list of starships on first mount
@@ -24,12 +25,11 @@ function PlayActions() {
             if(res.next) return fetchData(res.next, resourceType, listOfData)   // gets data from next page
             else dispatch(setUpList(resourceType, listOfData)) // updates state once we have all data
           })
-          .catch((error) => console.log(error))
         }
           // prevent the user from playing before all the data is loaded
           Promise.all([fetchData(peopleURL, "people"), fetchData(starshipsURL, "starships")])
           .then(() => setIsDisabled(false))
-          .catch((error) => console.log(error))
+          .catch((error) => setErrorInFetch(true)) // if any of them fail, display error
       }, [])
     
        function play(list) {
@@ -41,12 +41,19 @@ function PlayActions() {
     }
     
     const GameDescription = () => isDisabled ? 
-                                <div className="GameDescription"><p>Loading data...</p><LoadingGif/></div> :
+                                <div className="GameDescription">
+                                    <p>Loading data...</p><LoadingGif/>
+                                </div> :
                                 <div className="GameDescription"> Choose a resource to fight...</div>
+
+    const DisplayError = () => <div className="alert alert-danger">
+         <p>Error when getting the data, please refresh the page.</p>
+         <a href="document.location.reload(true)" class="alert-link">Click here to refresh</a>
+         </div>
 
     return (
         <div className="PlayActions">
-           <GameDescription />
+           { errorInFetch ? < DisplayError /> : <GameDescription />}
            <div className="ButtonsArea">
                 <Button id="playWithPeopleButton" 
                     className ="playButton" 
