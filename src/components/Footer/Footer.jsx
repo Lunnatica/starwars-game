@@ -3,7 +3,7 @@ import React from "react"
 function Footer() {
     return (
         <footer className="Footer">
-            Coded for Smart Pension interview.
+            Coded by Paula Lopez Antelo.
         </footer>
     )
 }

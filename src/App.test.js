@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import App from './App';
 import Header from "./components/Header/Header"
 import { shallow } from 'enzyme'

@@ -47,8 +47,7 @@ function PlayActions() {
                                 <div className="GameDescription"> Choose a resource to fight...</div>
 
     const DisplayError = () => <div className="alert alert-danger">
-         <p>Error when getting the data, please refresh the page.</p>
-         <a href="document.location.reload(true)" class="alert-link">Click here to refresh</a>
+            <p>Error when getting the data, please refresh the page.</p>
          </div>
 
     return (

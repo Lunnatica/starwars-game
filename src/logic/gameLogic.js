@@ -1,8 +1,5 @@
 // Contains game functionality
-
-export function getRandomNumber(max) {
-    return Math.floor(Math.random() * max)
-}
+import { getRandomNumber } from './getRandomNumber'
 
 export function battle(list) { // decides winner depending on cards values
     // get 2 cards from the list  
