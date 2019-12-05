@@ -1,9 +1,13 @@
 // Contains game functionality
 
+export function getRandomNumber(max) {
+    return Math.floor(Math.random() * max)
+}
+
 export function battle(list) { // decides winner depending on cards values
     // get 2 cards from the list  
-    const randomNumber1 = Math.floor(Math.random() * list.length)
-    const randomNumber2 = Math.floor(Math.random() * list.length)
+    const randomNumber1 = getRandomNumber(list.length)
+    const randomNumber2 = getRandomNumber(list.length)
     const card1 = list[randomNumber1]
     const card2 = list[randomNumber2]
     
