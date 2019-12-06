@@ -1,9 +1,9 @@
-import React from 'react';
-import App from './App';
+import React from 'react'
+import App from './App'
 import Header from "./components/Header/Header"
 import { shallow } from 'enzyme'
-import PlayArea from './components/PlayArea/PlayArea';
-import Footer from './components/Footer/Footer';
+import PlayArea from './components/PlayArea/PlayArea'
+import Footer from './components/Footer/Footer'
 
 
 describe('<App />', () => {

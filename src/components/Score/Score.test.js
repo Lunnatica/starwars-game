@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Score from "./Score"
 import { shallow } from 'enzyme'
 

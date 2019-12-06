@@ -1,9 +1,9 @@
-import React from 'react';
-import PlayArea from './PlayArea';
+import React from 'react'
+import PlayArea from './PlayArea'
 import { shallow } from 'enzyme'
-import PlayActions from '../PlayActions/PlayActions';
-import GameResults from '../GameResults/GameResults';
-import CardsArea from '../CardsArea/CardsArea';
+import PlayActions from '../PlayActions/PlayActions'
+import GameResults from '../GameResults/GameResults'
+import CardsArea from '../CardsArea/CardsArea'
 
 
 describe('<PlayArea />', () => {

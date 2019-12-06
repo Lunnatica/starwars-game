@@ -1,16 +1,13 @@
-import React from 'react';
+import React from 'react'
 import { mount } from 'enzyme'
-import Score from '../Score/Score';
-import GameResults from './GameResults';
+import Score from '../Score/Score'
+import GameResults from './GameResults'
 import configureMockStore from "redux-mock-store"
 import { Provider } from "react-redux"
-
-
 
 const mockStore = configureMockStore([])
 const state = { players:{winner:"P1", scoreP1:"2", scoreP2:"1"}}
 const stateDraw = { players:{winner:"draw", scoreP1:"2", scoreP2:"1"}}
-
 
 describe('<GameResults />', () => {
   it('should render <Score /> twice', () => {

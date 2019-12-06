@@ -1,6 +1,6 @@
 import React from "react"
-import { shallow } from 'enzyme';
-import Button from './Button';
+import { shallow } from 'enzyme'
+import Button from './Button'
 
 
 describe('<Button />', () => {
@@ -19,7 +19,7 @@ describe('<Button />', () => {
           />
         )
         wrapper.simulate('click')
-        expect(onButtonClickMock).toHaveBeenCalledTimes(1); 
+        expect(onButtonClickMock).toHaveBeenCalledTimes(1)
       })
     })
 })

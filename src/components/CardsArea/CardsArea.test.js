@@ -1,6 +1,5 @@
-import React from 'react';
-// import ReactDOM from 'react-dom';
-import CardsArea from './CardsArea';
+import React from 'react'
+import CardsArea from './CardsArea'
 import { shallow } from 'enzyme'
 import GameCard from "../GameCard/GameCard"
 

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import configureMockStore from "redux-mock-store"
 import { Provider } from "react-redux"
-import GameCard from './GameCard';
+import GameCard from './GameCard'
 import { mount } from 'enzyme'
 import { stateTest } from './testData'
 

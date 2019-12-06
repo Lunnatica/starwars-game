@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 import { mount } from 'enzyme'
-import PlayActions from './PlayActions';
+import PlayActions from './PlayActions'
 import configureMockStore from "redux-mock-store"
 import { Provider } from "react-redux"
-import Button from '../Button/Button';
+import Button from '../Button/Button'
 
 
 

@@ -12,7 +12,7 @@ function App() {
       <PlayArea />
       <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
