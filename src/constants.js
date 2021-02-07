@@ -1,3 +1,2 @@
-export const peopleURL = "https://swapi.co/api/people/"
-export const starshipsURL = "https://swapi.co/api/starships/"
-
+export const peopleURL = "https://swapi.dev/api/people/";
+export const starshipsURL = "https://swapi.dev/api/starships/";
