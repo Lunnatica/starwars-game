@@ -1,3 +1,11 @@
+## Screenshots
+
+<img width="1434" alt="StarWars App 1" src="https://user-images.githubusercontent.com/4697967/153756729-0aae13d6-f640-452d-8af2-db573913bd7a.png">
+
+
+<img width="1434" alt="StarWars App2" src="https://user-images.githubusercontent.com/4697967/153756742-4b9d1473-66f6-4de9-afe2-feab5776db9b.png">
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
