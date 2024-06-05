@@ -1,3 +1,7 @@
+## Try it live!
+
+https://starwars-game.vercel.app/
+
 ## Screenshots
 
 <img width="1434" alt="StarWars App 1" src="https://user-images.githubusercontent.com/4697967/153756729-0aae13d6-f640-452d-8af2-db573913bd7a.png">
